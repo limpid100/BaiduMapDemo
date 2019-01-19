@@ -102,6 +102,11 @@ public class LocationService {
 
         clientOption.setEnableSimulateGps(false);
         //可选，设置是否需要过滤GPS仿真结果，默认需要，即参数为false
+        clientOption.setIsNeedLocationPoiList(true);
+        //设置是否需要返回位置POI信息，可以在BDLocation.getPoiList()中得到数据
+        clientOption.setIsNeedLocationDescribe(true);
+        //设置是否需要返回位置语义化信息，可以在BDLocation.getLocationDescribe()中得到数据，ex:"在天安门附近"， 可以用作地址信息的补充
+        clientOption.setIsNeedAddress(true);
         return clientOption;
     }
 }

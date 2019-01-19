@@ -3,4 +3,23 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="blue1">#dcf2ff</color>
+    <color name="blue2">#13a5ff</color>
+    <color name="text_gray4">#666</color>
+    <color name="text_gray1">#505662</color>
+    <color name="text_gray2">#555B69</color>
+    <color name="text_gray5">#555B69</color>
+    <color name="text_gray3">#99F5F5F5</color>
+    <color name="text_gray6">#999999</color>
+    <color name="text_gray7">#414141</color>
+    <color name="text_gray8">#abadad</color>
+    <color name="text_gray9">#DCDCDC</color>
+    <color name="text_gray10">#DBDBDB</color>
+    <color name="text_gray11">#555B6B</color>
+    <color name="ddzt_gray">#CCCCCC</color>
+    <color name="ddzt_green">#259B24</color>
+    <color name="ddzt_red">#FF3D00</color>
+    <color name="divider_color">#DDD</color>
+    <color name="productName_color">#383838</color>
+    <color name="text_gray12">#323232</color>
 </resources>
