@@ -1,4 +1,4 @@
-package com.dxl.baidumapdemo;
+package com.dxl.baidumapdemo.util;
 
 import android.content.Context;
 
@@ -109,4 +109,21 @@ public class LocationService {
         clientOption.setIsNeedAddress(true);
         return clientOption;
     }
+
+    //做为一个定位服务的开发者，以下几个"秘密"，你不可不知！
+    //（1）在application中初始化LocationClient，一个应用中只初始化一次定位服务；
+    //（2）如非必要，无需在自定义的Service中初始化定位SDK，定位SDK本身是Service；
+    //（3）开发者在Android 6.0下，除了位置权限外，建议同时申请READ_PHONE_STATE和WRITE_EXTERNAL_STORAGE权限；
+    //（4）使用过程中，start定位服务后，尽量不要获得结果后就立即stop定位服务（原因参见后续说明），如果需要降低功耗，建议使用下边的方法：
+    //mOption.setOpenAutoNotifyMode(frequence,distance,sensitivity);
+    //  //分别为频率，距离，敏感程度设置后，SDK会按照“或”的关系，达到标准才会发起定位，例如：
+    //  //新闻类应用，需要根据用户位置，推送不同类型的新闻，mOption.setOpenAutoNotifyMode(5*60*1000,500，LocationClientOption.LOC_SENSITIVITY_MIDDLE)
+    //  //基于地理位置的社交应用，需要对用户所在范围进行排序，mOption.setOpenAutoNotifyMode(60*1000,200，LocationClientOption.LOC_SENSITIVITY_HIGHT)
+    //  //工具类应用，主要需要了解用户的位置特点，mOption.setOpenAutoNotifyMode(60*60*1000,5000，LocationClientOption.LOC_SENSITIVITY_LOW)
+    //
+    //减少stop()方法原理解释：
+    //（1）定位SDK服务停止后，会清除内部服务的内存占用，包括提升定位速度的离线定位，提升定位精度和成功率的基站监听，重新启动定位服务时，这些功能都会重新初始化，造成定位速度降低；
+    //（2）相对于需要时启动定位SDK服务来说，持续运行定位SDK服务更加节省流量，SDK内部会根据实际场景变化，动态决定是否进行网络定位请求，如果使用才进行初始化，则SDK会认为是首次定位；
+    //（3）用户连接WiFi，接通电源并且使用定位服务的时候，定位SDK会下载离线数据，如果获取定位结果后立即停止定位服务，离线数据无法成功下载，造成定位成功率降低；
+
 }

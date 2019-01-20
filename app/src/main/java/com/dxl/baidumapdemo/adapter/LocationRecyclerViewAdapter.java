@@ -1,4 +1,4 @@
-package com.dxl.baidumapdemo;
+package com.dxl.baidumapdemo.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
+import com.dxl.baidumapdemo.R;
+import com.dxl.baidumapdemo.util.Util;
+import com.dxl.baidumapdemo.bean.LocationBean;
 
 import java.util.ArrayList;
 import java.util.List;

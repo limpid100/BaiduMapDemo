@@ -1,17 +1,17 @@
-package com.dxl.baidumapdemo;
+package com.dxl.baidumapdemo.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
+import com.dxl.baidumapdemo.fragment.LocationResultFragment;
+import com.dxl.baidumapdemo.util.LocationService;
+import com.dxl.baidumapdemo.R;
 
 /**
  * @author dxl
@@ -20,10 +20,9 @@ import com.baidu.location.BDLocation;
 public class LocationActivity extends AppCompatActivity {
 
     LocationService locationService;
-    RecyclerView mRecyclerView;
     TextView mMessageView;
-    LocationRecyclerViewAdapter mAdapter;
 
+    LocationResultFragment fragment;
     boolean isStart = false;
     private Button mStartButton, mStopButton;
 
@@ -37,12 +36,7 @@ public class LocationActivity extends AppCompatActivity {
 
     private void initView() {
         setContentView(R.layout.activity_location);
-        mRecyclerView = findViewById(R.id.recycler_view);
         mMessageView = findViewById(R.id.tv_message);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        mAdapter = new LocationRecyclerViewAdapter(this);
-        mRecyclerView.setAdapter(mAdapter);
         mStartButton = findViewById(R.id.btn_start);
         mStopButton = findViewById(R.id.btn_stop);
         mStartButton.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +58,8 @@ public class LocationActivity extends AppCompatActivity {
                 locationService.stop();
             }
         });
+        fragment = LocationResultFragment.newInstance();
+        getSupportFragmentManager().beginTransaction().add(R.id.fl, fragment).commit();
     }
 
     private void initLocationService() {
@@ -72,7 +68,7 @@ public class LocationActivity extends AppCompatActivity {
             @Override
             public void onReceiveLocation(BDLocation bdLocation) {
                 mMessageView.setText("定位成功：" + bdLocation.getTime());
-                mAdapter.setData(bdLocation);
+                fragment.setBDLocation(bdLocation);
             }
         });
     }

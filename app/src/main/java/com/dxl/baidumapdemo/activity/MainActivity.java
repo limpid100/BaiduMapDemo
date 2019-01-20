@@ -1,4 +1,4 @@
-package com.dxl.baidumapdemo;
+package com.dxl.baidumapdemo.activity;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -12,11 +12,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.dxl.baidumapdemo.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +27,14 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //定位的权限
+    /**
+     * 定位的权限
+     */
     private final String[] REQUEST_PERMISSIONS = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private List<String> mPermissionList = new ArrayList<>();
     public static final int PERMISSION_REQUEST_CODE = 1001;
     private Class<?> mClazz;
 
-    private Button mBasicLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +44,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initView() {
         setContentView(R.layout.activity_main);
-        mBasicLocation = findViewById(R.id.basic_location);
-        mBasicLocation.setOnClickListener(this);
+        findViewById(R.id.basic_location).setOnClickListener(this);
+        findViewById(R.id.auto_notify).setOnClickListener(this);
     }
 
     private void requestPermission() {
         if (!checkPermission()) {
             ActivityCompat.requestPermissions(this, mPermissionList.toArray(new String[0]), PERMISSION_REQUEST_CODE);
-        }else {
+        } else {
             startActivity();
         }
     }
@@ -132,9 +134,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.basic_location:
                 mClazz = LocationActivity.class;
-                requestPermission();
+                break;
+            case R.id.auto_notify:
+                mClazz = AutoNotifyActivity.class;
                 break;
             default:
         }
+        requestPermission();
     }
 }

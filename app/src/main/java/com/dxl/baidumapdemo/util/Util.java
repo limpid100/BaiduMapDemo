@@ -1,10 +1,11 @@
-package com.dxl.baidumapdemo;
+package com.dxl.baidumapdemo.util;
 
 import android.util.SparseArray;
 
 import com.baidu.location.Address;
 import com.baidu.location.BDLocation;
 import com.baidu.location.Poi;
+import com.dxl.baidumapdemo.bean.LocationBean;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
