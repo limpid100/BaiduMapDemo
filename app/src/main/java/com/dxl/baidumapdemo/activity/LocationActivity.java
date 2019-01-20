@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
+import com.dxl.baidumapdemo.MyApplication;
 import com.dxl.baidumapdemo.fragment.LocationResultFragment;
 import com.dxl.baidumapdemo.util.LocationService;
 import com.dxl.baidumapdemo.R;
@@ -63,7 +64,7 @@ public class LocationActivity extends AppCompatActivity {
     }
 
     private void initLocationService() {
-        locationService = new LocationService(getApplicationContext());
+        locationService = ((MyApplication) getApplication()).mLocationService;
         locationService.registerListener(new BDAbstractLocationListener() {
             @Override
             public void onReceiveLocation(BDLocation bdLocation) {

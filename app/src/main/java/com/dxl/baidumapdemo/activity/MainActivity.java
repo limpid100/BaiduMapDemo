@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.basic_location).setOnClickListener(this);
         findViewById(R.id.auto_notify).setOnClickListener(this);
         findViewById(R.id.notify_location).setOnClickListener(this);
+        findViewById(R.id.basic_map).setOnClickListener(this);
     }
 
     private void requestPermission() {
@@ -141,6 +142,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.notify_location:
                 mClazz = NotifyActivity.class;
                 break;
+            case R.id.basic_map:
+                mClazz = BasicMapActivity.class;
             default:
         }
         requestPermission();

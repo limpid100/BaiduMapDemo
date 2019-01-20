@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClientOption;
+import com.dxl.baidumapdemo.MyApplication;
 import com.dxl.baidumapdemo.R;
 import com.dxl.baidumapdemo.fragment.LocationResultFragment;
 import com.dxl.baidumapdemo.util.LocationService;
@@ -44,7 +45,7 @@ public class AutoNotifyActivity extends AppCompatActivity {
     }
 
     private void initLocationService() {
-        mLocationService = new LocationService(getApplicationContext());
+        mLocationService = ((MyApplication) getApplication()).mLocationService;
         mLocationClientOption = mLocationService.getDefaultLocationClientOption();
         mLocationService.registerListener(new BDAbstractLocationListener() {
             @Override
