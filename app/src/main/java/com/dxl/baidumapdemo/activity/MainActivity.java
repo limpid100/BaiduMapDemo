@@ -15,7 +15,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 
 import com.dxl.baidumapdemo.R;
 
@@ -46,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         findViewById(R.id.basic_location).setOnClickListener(this);
         findViewById(R.id.auto_notify).setOnClickListener(this);
+        findViewById(R.id.notify_location).setOnClickListener(this);
     }
 
     private void requestPermission() {
@@ -137,6 +137,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.auto_notify:
                 mClazz = AutoNotifyActivity.class;
+                break;
+            case R.id.notify_location:
+                mClazz = NotifyActivity.class;
                 break;
             default:
         }
